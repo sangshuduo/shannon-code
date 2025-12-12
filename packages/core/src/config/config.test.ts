@@ -34,6 +34,7 @@ import { logRipgrepFallback } from '../telemetry/loggers.js';
 import { RipgrepFallbackEvent } from '../telemetry/types.js';
 import { ToolRegistry } from '../tools/tool-registry.js';
 import { DEFAULT_MODEL_CONFIGS } from './defaultModelConfigs.js';
+import { DEFAULT_GEMINI_FLASH_LITE_MODEL } from './models.js';
 
 vi.mock('fs', async (importOriginal) => {
   const actual = await importOriginal<typeof import('fs')>();
@@ -1308,6 +1309,38 @@ describe('BaseLlmClient Lifecycle', () => {
       config.getContentGenerator(),
       config,
     );
+  });
+
+  it('should use Ollama model for summarizer aliases when using Ollama auth', async () => {
+    const config = new Config({ ...baseParams, model: 'qwen3-coder:30b' });
+
+    vi.mocked(createContentGeneratorConfig).mockResolvedValue({
+      authType: AuthType.USE_OLLAMA,
+      ollamaBaseUrl: 'http://localhost:11434/v1',
+      ollamaModel: 'qwen3-coder:30b',
+    });
+
+    await config.refreshAuth(AuthType.USE_OLLAMA);
+
+    expect(
+      config.modelConfigService.getResolvedConfig({
+        model: 'summarizer-default',
+      }).model,
+    ).toBe('qwen3-coder:30b');
+
+    vi.mocked(createContentGeneratorConfig).mockResolvedValue({
+      authType: AuthType.USE_GEMINI,
+      apiKey: 'test-key',
+      vertexai: false,
+    });
+
+    await config.refreshAuth(AuthType.USE_GEMINI);
+
+    expect(
+      config.modelConfigService.getResolvedConfig({
+        model: 'summarizer-default',
+      }).model,
+    ).toBe(DEFAULT_GEMINI_FLASH_LITE_MODEL);
   });
 });
 

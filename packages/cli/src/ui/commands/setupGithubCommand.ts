@@ -227,7 +227,8 @@ export const setupGithubCommand: SlashCommand = {
     // Get the latest release tag from GitHub
     const proxy = context?.services?.config?.getProxy();
     const releaseTag = await getLatestGitHubRelease(proxy);
-    const readmeUrl = `https://github.com/google-github-actions/run-gemini-cli/blob/${releaseTag}/README.md#quick-start`;
+    const readmeUrl =
+      'https://github.com/sangshuduo/shannon-code/blob/main/README.md#github-integration';
 
     // Create workflows directory
     const workflowsDir = path.join(gitRepoRoot, '.github', 'workflows');

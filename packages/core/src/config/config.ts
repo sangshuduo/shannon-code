@@ -728,6 +728,32 @@ export class Config {
     // Only assign to instance properties after successful initialization
     this.contentGeneratorConfig = newContentGeneratorConfig;
 
+    // Some internal model aliases (e.g. summarizers) default to Gemini models.
+    // When using Ollama, these need to target the configured Ollama model.
+    this.modelConfigService.unregisterRuntimeModelConfig('summarizer-default');
+    this.modelConfigService.unregisterRuntimeModelConfig('summarizer-shell');
+    if (newContentGeneratorConfig.authType === AuthType.USE_OLLAMA) {
+      const ollamaModel =
+        newContentGeneratorConfig.ollamaModel || this.getModel();
+      const summarizerAlias = {
+        extends: 'base',
+        modelConfig: {
+          model: ollamaModel,
+          generateContentConfig: {
+            maxOutputTokens: 2000,
+          },
+        },
+      } as const;
+      this.modelConfigService.registerRuntimeModelConfig(
+        'summarizer-default',
+        summarizerAlias,
+      );
+      this.modelConfigService.registerRuntimeModelConfig(
+        'summarizer-shell',
+        summarizerAlias,
+      );
+    }
+
     // Initialize BaseLlmClient now that the ContentGenerator is available
     this.baseLlmClient = new BaseLlmClient(this.contentGenerator, this);
 
