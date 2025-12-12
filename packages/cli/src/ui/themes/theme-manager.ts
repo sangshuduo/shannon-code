@@ -26,7 +26,7 @@ import { ANSI } from './ansi.js';
 import { ANSILight } from './ansi-light.js';
 import { NoColorTheme } from './no-color.js';
 import process from 'node:process';
-import { debugLogger } from '@google/gemini-cli-core';
+import { debugLogger } from '@sangshuduo/shannon-core';
 
 export interface ThemeDisplay {
   name: string;

@@ -42,9 +42,9 @@ import {
   type SettingsValue,
   TOGGLE_TYPES,
 } from '../../config/settingsSchema.js';
-import { debugLogger } from '@google/gemini-cli-core';
+import { debugLogger } from '@sangshuduo/shannon-core';
 import { keyMatchers, Command } from '../keyMatchers.js';
-import type { Config } from '@google/gemini-cli-core';
+import type { Config } from '@sangshuduo/shannon-core';
 import { useUIState } from '../contexts/UIStateContext.js';
 import { useTextBuffer } from './shared/text-buffer.js';
 import { TextInput } from './shared/TextInput.js';
@@ -1056,7 +1056,7 @@ export function SettingsDialog({
         {showRestartPrompt && (
           <Box marginX={1}>
             <Text color={theme.status.warning}>
-              To see changes, Gemini CLI must be restarted. Press r to exit and
+              To see changes, Shannon CLI must be restarted. Press r to exit and
               apply changes now.
             </Text>
           </Box>

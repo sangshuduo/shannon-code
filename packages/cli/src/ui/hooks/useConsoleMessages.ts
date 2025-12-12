@@ -16,7 +16,7 @@ import {
   coreEvents,
   CoreEvent,
   type ConsoleLogPayload,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 
 export interface UseConsoleMessagesReturn {
   consoleMessages: ConsoleMessageItem[];

@@ -63,7 +63,7 @@ import {
   fireSessionStartHook,
   fireSessionEndHook,
   getVersion,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import {
   initializeApp,
   type InitializationResult,

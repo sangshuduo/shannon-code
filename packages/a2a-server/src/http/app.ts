@@ -20,9 +20,9 @@ import { loadConfig, loadEnvironment, setTargetDir } from '../config/config.js';
 import { loadSettings } from '../config/settings.js';
 import { loadExtensions } from '../config/extension.js';
 import { commandRegistry } from '../commands/command-registry.js';
-import { SimpleExtensionLoader } from '@google/gemini-cli-core';
+import { SimpleExtensionLoader } from '@sangshuduo/shannon-core';
 import type { Command, CommandArgument } from '../commands/types.js';
-import { GitService } from '@google/gemini-cli-core';
+import { GitService } from '@sangshuduo/shannon-core';
 
 type CommandResponse = {
   name: string;

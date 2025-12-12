@@ -9,7 +9,10 @@ import { spawn, exec, execSync } from 'node:child_process';
 import os from 'node:os';
 import fs from 'node:fs';
 import { start_sandbox } from './sandbox.js';
-import { FatalSandboxError, type SandboxConfig } from '@google/gemini-cli-core';
+import {
+  FatalSandboxError,
+  type SandboxConfig,
+} from '@sangshuduo/shannon-core';
 import { EventEmitter } from 'node:events';
 
 vi.mock('../config/settings.js', () => ({
@@ -44,9 +47,9 @@ vi.mock('node:util', async (importOriginal) => {
     },
   };
 });
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
+vi.mock('@sangshuduo/shannon-core', async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+    await importOriginal<typeof import('@sangshuduo/shannon-core')>();
   return {
     ...actual,
     debugLogger: {

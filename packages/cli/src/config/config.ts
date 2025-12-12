@@ -8,11 +8,12 @@ import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
 import process from 'node:process';
 import { mcpCommand } from '../commands/mcp.js';
-import type { OutputFormat } from '@google/gemini-cli-core';
+import type { OutputFormat } from '@sangshuduo/shannon-core';
 import { extensionsCommand } from '../commands/extensions.js';
 import { hooksCommand } from '../commands/hooks.js';
 import {
   Config,
+  AuthType,
   setGeminiMdFilename as setServerGeminiMdFilename,
   getCurrentGeminiMdFilename,
   ApprovalMode,
@@ -32,7 +33,7 @@ import {
   loadServerHierarchicalMemory,
   WEB_FETCH_TOOL_NAME,
   getVersion,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import type { Settings } from './settings.js';
 
 import { loadSandboxConfig } from './sandboxConfig.js';
@@ -43,7 +44,7 @@ import { RESUME_LATEST } from '../utils/sessionUtils.js';
 import { isWorkspaceTrusted } from './trustedFolders.js';
 import { createPolicyEngineConfig } from './policy.js';
 import { ExtensionManager } from './extension-manager.js';
-import type { ExtensionEvents } from '@google/gemini-cli-core/src/utils/extensionLoader.js';
+import type { ExtensionEvents } from '@sangshuduo/shannon-core/src/utils/extensionLoader.js';
 import { requestConsentNonInteractive } from './extensions/consent.js';
 import { promptForSetting } from './extensions/extensionSettings.js';
 import type { EventEmitter } from 'node:stream';
@@ -569,9 +570,14 @@ export async function loadCliConfig(
     extraExcludes.length > 0 ? extraExcludes : undefined,
   );
 
-  const defaultModel = DEFAULT_GEMINI_MODEL_AUTO;
+  const authType = settings.security?.auth?.selectedType;
+  const defaultModel =
+    authType === AuthType.USE_OLLAMA
+      ? process.env['OLLAMA_MODEL'] || 'llama3.2'
+      : DEFAULT_GEMINI_MODEL_AUTO;
   const resolvedModel: string =
     argv.model ||
+    process.env['SHANNON_MODEL'] ||
     process.env['GEMINI_MODEL'] ||
     settings.model?.name ||
     defaultModel;

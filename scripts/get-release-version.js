@@ -38,10 +38,9 @@ function getArgs() {
       string: true,
     })
     .option('cli-package-name', {
-      description:
-        'fully qualified package name with scope (e.g @google/gemini-cli)',
+      description: 'fully qualified package name with scope (e.g shannon-code)',
       string: true,
-      default: '@google/gemini-cli',
+      default: '@sangshuduo/shannon-code',
     })
     .option('preview_version_override', {
       description: 'Override the calculated preview version.',

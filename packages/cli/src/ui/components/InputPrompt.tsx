@@ -23,8 +23,8 @@ import type { Key } from '../hooks/useKeypress.js';
 import { useKeypress } from '../hooks/useKeypress.js';
 import { keyMatchers, Command } from '../keyMatchers.js';
 import type { CommandContext, SlashCommand } from '../commands/types.js';
-import type { Config } from '@google/gemini-cli-core';
-import { ApprovalMode } from '@google/gemini-cli-core';
+import type { Config } from '@sangshuduo/shannon-core';
+import { ApprovalMode } from '@sangshuduo/shannon-core';
 import {
   parseInputForHighlighting,
   buildSegmentsForVisualSlice,

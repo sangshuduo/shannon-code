@@ -6,7 +6,7 @@
 
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
-import { debugLogger, spawnAsync } from '@google/gemini-cli-core';
+import { debugLogger, spawnAsync } from '@sangshuduo/shannon-core';
 
 /**
  * Supported image file extensions based on Gemini API.

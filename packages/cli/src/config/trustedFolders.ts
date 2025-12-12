@@ -13,7 +13,7 @@ import {
   isWithinRoot,
   ideContextStore,
   GEMINI_DIR,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import type { Settings } from './settings.js';
 import stripJsonComments from 'strip-json-comments';
 

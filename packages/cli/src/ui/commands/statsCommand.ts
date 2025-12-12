@@ -4,7 +4,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { CodeAssistServer, getCodeAssistServer } from '@google/gemini-cli-core';
+import {
+  CodeAssistServer,
+  getCodeAssistServer,
+} from '@sangshuduo/shannon-core';
 import type { HistoryItemStats } from '../types.js';
 import { MessageType } from '../types.js';
 import { formatDuration } from '../utils/formatters.js';

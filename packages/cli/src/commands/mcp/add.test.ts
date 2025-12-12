@@ -8,7 +8,7 @@ import { describe, it, expect, vi, type Mock, type MockInstance } from 'vitest';
 import yargs, { type Argv } from 'yargs';
 import { addCommand } from './add.js';
 import { loadSettings, SettingScope } from '../../config/settings.js';
-import { debugLogger } from '@google/gemini-cli-core';
+import { debugLogger } from '@sangshuduo/shannon-core';
 
 vi.mock('../utils.js', () => ({
   exitCli: vi.fn(),

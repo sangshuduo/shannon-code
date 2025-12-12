@@ -7,11 +7,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { Storage, debugLogger } from '@google/gemini-cli-core';
+import { Storage, debugLogger } from '@sangshuduo/shannon-core';
 import { PersistentState } from './persistentState.js';
 
 vi.mock('node:fs');
-vi.mock('@google/gemini-cli-core', () => ({
+vi.mock('@sangshuduo/shannon-core', () => ({
   Storage: {
     getGlobalGeminiDir: vi.fn(),
   },

@@ -16,7 +16,7 @@ import type {
   ThoughtSummary,
   ToolCallRequestInfo,
   GeminiErrorEventValue,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import {
   GeminiEventType as ServerGeminiEventType,
   getErrorMessage,
@@ -38,7 +38,7 @@ import {
   runInDevTraceSpan,
   EDIT_TOOL_NAMES,
   processRestorableToolCalls,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import { type Part, type PartListUnion, FinishReason } from '@google/genai';
 import type {
   HistoryItem,

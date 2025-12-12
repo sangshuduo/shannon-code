@@ -9,7 +9,7 @@ import {
   checkHasEditorType,
   type EditorType,
   EDITOR_DISPLAY_NAMES,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 
 export interface EditorDisplay {
   name: string;

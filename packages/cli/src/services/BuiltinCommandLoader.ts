@@ -7,8 +7,8 @@
 import { isDevelopment } from '../utils/installationInfo.js';
 import type { ICommandLoader } from './types.js';
 import type { SlashCommand } from '../ui/commands/types.js';
-import type { Config } from '@google/gemini-cli-core';
-import { startupProfiler } from '@google/gemini-cli-core';
+import type { Config } from '@sangshuduo/shannon-core';
+import { startupProfiler } from '@sangshuduo/shannon-core';
 import { aboutCommand } from '../ui/commands/aboutCommand.js';
 import { authCommand } from '../ui/commands/authCommand.js';
 import { bugCommand } from '../ui/commands/bugCommand.js';

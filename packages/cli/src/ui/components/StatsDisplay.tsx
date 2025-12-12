@@ -22,7 +22,7 @@ import { computeSessionStats } from '../utils/computeStats.js';
 import {
   type RetrieveUserQuotaResponse,
   VALID_GEMINI_MODELS,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 
 // A more flexible and powerful StatRow component
 interface StatRowProps {

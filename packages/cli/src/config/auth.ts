@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { AuthType } from '@google/gemini-cli-core';
+import { AuthType } from '@sangshuduo/shannon-core';
 import { loadEnvironment, loadSettings } from './settings.js';
 
 export function validateAuthMethod(authMethod: string): string | null {
@@ -16,10 +16,14 @@ export function validateAuthMethod(authMethod: string): string | null {
     return null;
   }
 
+  if (authMethod === AuthType.USE_OLLAMA) {
+    return null;
+  }
+
   if (authMethod === AuthType.USE_GEMINI) {
-    if (!process.env['GEMINI_API_KEY']) {
+    if (!process.env['SHANNON_API_KEY'] && !process.env['GEMINI_API_KEY']) {
       return (
-        'When using Gemini API, you must specify the GEMINI_API_KEY environment variable.\n' +
+        'When using Gemini API, you must specify the SHANNON_API_KEY (or legacy GEMINI_API_KEY) environment variable.\n' +
         'Update your environment and try again (no reload needed if using .env)!'
       );
     }

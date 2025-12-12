@@ -14,7 +14,7 @@ import {
   getTruncatedCheckpointNames,
   performRestore,
   type ToolCallData,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import {
   type CommandContext,
   type SlashCommand,

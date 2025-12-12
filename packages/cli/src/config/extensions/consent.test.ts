@@ -13,7 +13,7 @@ import {
 } from './consent.js';
 import type { ConfirmationRequest } from '../../ui/types.js';
 import type { ExtensionConfig } from '../extension.js';
-import { debugLogger } from '@google/gemini-cli-core';
+import { debugLogger } from '@sangshuduo/shannon-core';
 
 const mockReadline = vi.hoisted(() => ({
   createInterface: vi.fn().mockReturnValue({
@@ -28,9 +28,9 @@ vi.mock('node:readline', () => ({
   createInterface: mockReadline.createInterface,
 }));
 
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
+vi.mock('@sangshuduo/shannon-core', async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+    await importOriginal<typeof import('@sangshuduo/shannon-core')>();
   return {
     ...actual,
     debugLogger: {

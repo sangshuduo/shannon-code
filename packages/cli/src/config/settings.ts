@@ -16,7 +16,7 @@ import {
   getErrorMessage,
   Storage,
   coreEvents,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import stripJsonComments from 'strip-json-comments';
 import { DefaultLight } from '../ui/themes/default-light.js';
 import { DefaultDark } from '../ui/themes/default.js';
@@ -136,19 +136,25 @@ const MIGRATION_MAP: Record<string, string> = {
 };
 
 export function getSystemSettingsPath(): string {
+  if (process.env['SHANNON_CLI_SYSTEM_SETTINGS_PATH']) {
+    return process.env['SHANNON_CLI_SYSTEM_SETTINGS_PATH'];
+  }
   if (process.env['GEMINI_CLI_SYSTEM_SETTINGS_PATH']) {
     return process.env['GEMINI_CLI_SYSTEM_SETTINGS_PATH'];
   }
   if (platform() === 'darwin') {
-    return '/Library/Application Support/GeminiCli/settings.json';
+    return '/Library/Application Support/ShannonCli/settings.json';
   } else if (platform() === 'win32') {
-    return 'C:\\ProgramData\\gemini-cli\\settings.json';
+    return 'C:\\ProgramData\\shannon-cli\\settings.json';
   } else {
-    return '/etc/gemini-cli/settings.json';
+    return '/etc/shannon-cli/settings.json';
   }
 }
 
 export function getSystemDefaultsPath(): string {
+  if (process.env['SHANNON_CLI_SYSTEM_DEFAULTS_PATH']) {
+    return process.env['SHANNON_CLI_SYSTEM_DEFAULTS_PATH'];
+  }
   if (process.env['GEMINI_CLI_SYSTEM_DEFAULTS_PATH']) {
     return process.env['GEMINI_CLI_SYSTEM_DEFAULTS_PATH'];
   }

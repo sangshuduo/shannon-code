@@ -14,7 +14,7 @@ import {
 } from '../../config/trustedFolders.js';
 import * as process from 'node:process';
 import { type HistoryItemWithoutId, MessageType } from '../types.js';
-import { coreEvents, ExitCodes } from '@google/gemini-cli-core';
+import { coreEvents, ExitCodes } from '@sangshuduo/shannon-core';
 import { runExitCleanup } from '../../utils/cleanup.js';
 
 export const useFolderTrust = (
@@ -74,7 +74,7 @@ export const useFolderTrust = (
       } catch (_e) {
         coreEvents.emitFeedback(
           'error',
-          'Failed to save trust settings. Exiting Gemini CLI.',
+          'Failed to save trust settings. Exiting Shannon CLI.',
         );
         setTimeout(async () => {
           await runExitCleanup();

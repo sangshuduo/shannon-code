@@ -13,15 +13,15 @@ import {
   getMCPServerStatus,
   getMCPDiscoveryState,
   DiscoveredMCPTool,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 
 import type { CallableTool } from '@google/genai';
 import { Type } from '@google/genai';
 import { MessageType } from '../types.js';
 
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
+vi.mock('@sangshuduo/shannon-core', async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+    await importOriginal<typeof import('@sangshuduo/shannon-core')>();
   const mockAuthenticate = vi.fn();
   return {
     ...actual,

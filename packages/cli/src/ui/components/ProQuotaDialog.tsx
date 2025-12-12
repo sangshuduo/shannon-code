@@ -14,7 +14,7 @@ import {
   DEFAULT_GEMINI_FLASH_MODEL,
   DEFAULT_GEMINI_MODEL,
   UserTierId,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 
 interface ProQuotaDialogProps {
   failedModel: string;

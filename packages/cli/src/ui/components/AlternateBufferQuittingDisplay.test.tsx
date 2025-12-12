@@ -10,7 +10,7 @@ import { ToolCallStatus } from '../types.js';
 import type { HistoryItem, HistoryItemWithoutId } from '../types.js';
 import { Text } from 'ink';
 import { renderWithProviders } from '../../test-utils/render.js';
-import type { Config } from '@google/gemini-cli-core';
+import type { Config } from '@sangshuduo/shannon-core';
 
 vi.mock('../utils/terminalSetup.js', () => ({
   getTerminalProgram: () => null,
@@ -22,9 +22,9 @@ vi.mock('../contexts/AppContext.js', () => ({
   }),
 }));
 
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
+vi.mock('@sangshuduo/shannon-core', async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+    await importOriginal<typeof import('@sangshuduo/shannon-core')>();
   return {
     ...actual,
     getMCPServerStatus: vi.fn(),

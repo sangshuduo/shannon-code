@@ -22,7 +22,7 @@ import {
   type EditorType,
   isEditorAvailable,
   EDITOR_DISPLAY_NAMES,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import { useKeypress } from '../hooks/useKeypress.js';
 
 interface EditorDialogProps {

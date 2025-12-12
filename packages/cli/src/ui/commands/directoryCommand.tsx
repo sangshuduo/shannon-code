@@ -13,9 +13,9 @@ import { MultiFolderTrustDialog } from '../components/MultiFolderTrustDialog.js'
 import type { SlashCommand, CommandContext } from './types.js';
 import { CommandKind } from './types.js';
 import { MessageType, type HistoryItem } from '../types.js';
-import { refreshServerHierarchicalMemory } from '@google/gemini-cli-core';
+import { refreshServerHierarchicalMemory } from '@sangshuduo/shannon-core';
 import { expandHomeDir } from '../utils/directoryUtils.js';
-import type { Config } from '@google/gemini-cli-core';
+import type { Config } from '@sangshuduo/shannon-core';
 
 async function finishAddingDirectories(
   config: Config,
@@ -41,7 +41,7 @@ async function finishAddingDirectories(
     addItem(
       {
         type: MessageType.INFO,
-        text: `Successfully added GEMINI.md files from the following directories if there are:\n- ${added.join('\n- ')}`,
+        text: `Successfully added SHANNON.md files from the following directories if there are:\n- ${added.join('\n- ')}`,
       },
       Date.now(),
     );

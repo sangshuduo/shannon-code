@@ -25,7 +25,7 @@ import {
   SlashCommandStatus,
   ToolConfirmationOutcome,
   makeFakeConfig,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import { appEvents } from '../../utils/events.js';
 
 const {
@@ -51,9 +51,9 @@ vi.mock('./useAlternateBuffer.js', () => ({
   useAlternateBuffer: mockUseAlternateBuffer,
 }));
 
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
+vi.mock('@sangshuduo/shannon-core', async (importOriginal) => {
   const original =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+    await importOriginal<typeof import('@sangshuduo/shannon-core')>();
 
   return {
     ...original,

@@ -10,12 +10,12 @@ import type {
   LoadedSettings,
 } from '../../config/settings.js';
 import { MessageType } from '../types.js';
-import type { EditorType } from '@google/gemini-cli-core';
+import type { EditorType } from '@sangshuduo/shannon-core';
 import {
   allowEditorTypeInSandbox,
   checkHasEditorType,
   getEditorDisplayName,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import type { UseHistoryManagerReturn } from './useHistoryManager.js';
 
 import { SettingPaths } from '../../config/settingPaths.js';

@@ -8,7 +8,9 @@ import path from 'node:path';
 import os from 'node:os';
 import * as crypto from 'node:crypto';
 
-export const GEMINI_DIR = '.gemini';
+export const SHANNON_DIR = '.shannon';
+// Backwards compatibility: reuse GEMINI_DIR identifier but point to new path.
+export const GEMINI_DIR = SHANNON_DIR;
 export const GOOGLE_ACCOUNTS_FILENAME = 'google_accounts.json';
 
 /**

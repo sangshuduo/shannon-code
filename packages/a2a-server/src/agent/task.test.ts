@@ -20,17 +20,17 @@ import {
   type ToolCallRequestInfo,
   type GitService,
   type CompletedToolCall,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import { createMockConfig } from '../utils/testing_utils.js';
 import type { ExecutionEventBus, RequestContext } from '@a2a-js/sdk/server';
 import { CoderAgentEvent } from '../types.js';
-import type { ToolCall } from '@google/gemini-cli-core';
+import type { ToolCall } from '@sangshuduo/shannon-core';
 
 const mockProcessRestorableToolCalls = vi.hoisted(() => vi.fn());
 
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
+vi.mock('@sangshuduo/shannon-core', async (importOriginal) => {
   const original =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+    await importOriginal<typeof import('@sangshuduo/shannon-core')>();
   return {
     ...original,
     processRestorableToolCalls: mockProcessRestorableToolCalls,

@@ -12,7 +12,7 @@ import {
   debugLogger,
   FatalConfigError,
   getErrorMessage,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import { promptForSetting } from '../../config/extensions/extensionSettings.js';
 import { exitCli } from '../utils.js';
 
