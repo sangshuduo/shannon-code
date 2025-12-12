@@ -571,10 +571,17 @@ export async function loadCliConfig(
   );
 
   const authType = settings.security?.auth?.selectedType;
-  const defaultModel =
-    authType === AuthType.USE_OLLAMA
-      ? process.env['OLLAMA_MODEL'] || 'llama3.2'
-      : DEFAULT_GEMINI_MODEL_AUTO;
+  const usingOllama = authType === AuthType.USE_OLLAMA;
+  const hasExplicitOllamaModel =
+    !!argv.model || !!process.env['OLLAMA_MODEL'] || !!settings.model?.name;
+  if (usingOllama && !hasExplicitOllamaModel) {
+    debugLogger.warn(
+      '[Config] Ollama auth enabled but no model configured; defaulting to "llama3.2". Set OLLAMA_MODEL or pass --model to avoid this warning.',
+    );
+  }
+  const defaultModel = usingOllama
+    ? process.env['OLLAMA_MODEL'] || 'llama3.2'
+    : DEFAULT_GEMINI_MODEL_AUTO;
   const resolvedModel: string =
     argv.model ||
     process.env['SHANNON_MODEL'] ||

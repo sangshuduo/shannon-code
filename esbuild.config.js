@@ -7,7 +7,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
-import { writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { wasmLoader } from 'esbuild-plugin-wasm';
 
 let esbuild;
@@ -108,6 +108,16 @@ Promise.allSettled([
     if (process.env.DEV === 'true') {
       writeFileSync('./bundle/esbuild.json', JSON.stringify(metafile, null, 2));
     }
+    // Keep the root `bundle/shannon.js` in sync with the workspace CLI bundle,
+    // since the root package publishes `bundle/shannon.js` as its `bin`.
+    const rootBundleDir = path.resolve(__dirname, 'bundle');
+    if (!existsSync(rootBundleDir)) {
+      mkdirSync(rootBundleDir, { recursive: true });
+    }
+    copyFileSync(
+      path.resolve(__dirname, 'packages/cli/bundle/shannon.js'),
+      path.resolve(__dirname, 'bundle/shannon.js'),
+    );
   }),
   esbuild.build(a2aServerConfig),
 ]).then((results) => {

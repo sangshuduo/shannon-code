@@ -67,7 +67,7 @@ contain other project-specific files related to Gemini CLI's operation, such as:
 - **`bugCommand`** (object):
   - **Description:** Overrides the default URL for the `/bug` command.
   - **Default:**
-    `"urlTemplate": "https://github.com/google-gemini/gemini-cli/issues/new?template=bug_report.yml&title={title}&info={info}"`
+    `"urlTemplate": "https://github.com/sangshuduo/shannon-code/issues/new?template=bug_report.yml&title={title}&info={info}"`
   - **Properties:**
     - **`urlTemplate`** (string): A URL that can contain `{title}` and `{info}`
       placeholders.

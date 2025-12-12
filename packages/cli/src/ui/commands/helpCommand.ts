@@ -12,7 +12,7 @@ export const helpCommand: SlashCommand = {
   name: 'help',
   altNames: ['?'],
   kind: CommandKind.BUILT_IN,
-  description: 'For help on gemini-cli',
+  description: 'For help on shannon-code',
   autoExecute: true,
   action: async (context) => {
     const helpItem: Omit<HistoryItemHelp, 'id'> = {

@@ -56,3 +56,6 @@ patch_output.log
 
 .genkit
 *.tgz
+
+.gemini/
+.npm-cache

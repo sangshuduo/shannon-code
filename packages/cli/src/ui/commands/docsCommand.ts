@@ -19,7 +19,8 @@ export const docsCommand: SlashCommand = {
   kind: CommandKind.BUILT_IN,
   autoExecute: true,
   action: async (context: CommandContext): Promise<void> => {
-    const docsUrl = 'https://goo.gle/gemini-cli-docs';
+    const docsUrl =
+      'https://github.com/sangshuduo/shannon-code/blob/main/README.md';
 
     if (process.env['SANDBOX'] && process.env['SANDBOX'] !== 'sandbox-exec') {
       context.ui.addItem(

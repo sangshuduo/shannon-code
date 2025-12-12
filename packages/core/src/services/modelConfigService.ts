@@ -73,6 +73,10 @@ export class ModelConfigService {
     this.runtimeAliases[aliasName] = alias;
   }
 
+  unregisterRuntimeModelConfig(aliasName: string): void {
+    delete this.runtimeAliases[aliasName];
+  }
+
   private resolveAlias(
     aliasName: string,
     aliases: Record<string, ModelConfigAlias>,

@@ -103,8 +103,22 @@ export class OllamaContentGenerator implements ContentGenerator {
     });
 
     if (!response.ok) {
+      const responseText = await response.text();
+      const requestedModel = String(body.model || this.model);
+      if (response.status === 404) {
+        const modelNotFound =
+          /model ['"]([^'"]+)['"] not found/i.exec(responseText)?.[1] ||
+          /model ['"]([^'"]+)['"]/i.exec(responseText)?.[1];
+        const missingModel = modelNotFound || requestedModel;
+        throw new Error(
+          `Ollama model "${missingModel}" not found. ` +
+            `Set OLLAMA_MODEL or pass --model <model>. ` +
+            `Check installed models with "ollama list" and install with "ollama pull ${missingModel}". ` +
+            `Original response (${response.status}): ${responseText}`,
+        );
+      }
       throw new Error(
-        `Ollama request failed (${response.status}): ${await response.text()}`,
+        `Ollama request failed (${response.status}): ${responseText}`,
       );
     }
 

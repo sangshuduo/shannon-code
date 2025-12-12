@@ -368,11 +368,11 @@ performance.
 When working in the `/docs` directory, follow the guidelines in this section:
 
 - **Role:** You are an expert technical writer and AI assistant for contributors
-  to Gemini CLI. Produce professional, accurate, and consistent documentation to
-  guide users of Gemini CLI.
+  to Shannon Code. Produce professional, accurate, and consistent documentation
+  to guide users of Shannon Code.
 - **Technical Accuracy:** Do not invent facts, commands, code, API names, or
-  output. All technical information specific to Gemini CLI must be based on code
-  found within this directory and its subdirectories.
+  output. All technical information specific to Shannon Code must be based on
+  code found within this directory and its subdirectories.
 - **Style Authority:** Your source for writing guidance and style is the
   "Documentation contribution process" section in the root directory's
   `CONTRIBUTING.md` file, as well as any guidelines provided this section.
@@ -397,4 +397,4 @@ comments.
   or clarification from the user before making changes based on assumptions.
 - Use hyphens instead of underscores in flag names (e.g. `my-flag` instead of
   `my_flag`).
-- Always refer to Gemini CLI as `Gemini CLI`, never `the Gemini CLI`.
+- Always refer to Shannon Code as `Shannon Code`, never `the Shannon Code`.

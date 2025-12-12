@@ -24,33 +24,43 @@ import { glob } from 'glob';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
-const bundleDir = join(root, 'bundle');
 
-// Create the bundle directory if it doesn't exist
-if (!existsSync(bundleDir)) {
-  mkdirSync(bundleDir);
+function ensureDir(dir) {
+  if (!existsSync(dir)) {
+    mkdirSync(dir, { recursive: true });
+  }
 }
 
-// 1. Copy Sandbox definitions (.sb)
-const sbFiles = glob.sync('packages/**/*.sb', { cwd: root });
-for (const file of sbFiles) {
-  copyFileSync(join(root, file), join(bundleDir, basename(file)));
+function copyBundleAssetsTo(bundleDir) {
+  ensureDir(bundleDir);
+
+  // 1. Copy Sandbox definitions (.sb)
+  const sbFiles = glob.sync('packages/**/*.sb', { cwd: root });
+  for (const file of sbFiles) {
+    copyFileSync(join(root, file), join(bundleDir, basename(file)));
+  }
+
+  // 2. Copy Policy definitions (.toml)
+  const policyDir = join(bundleDir, 'policies');
+  ensureDir(policyDir);
+
+  // Locate policy files specifically in the core package
+  const policyFiles = glob.sync('packages/core/src/policy/policies/*.toml', {
+    cwd: root,
+  });
+
+  for (const file of policyFiles) {
+    copyFileSync(join(root, file), join(policyDir, basename(file)));
+  }
+
+  return { sbFiles, policyFiles };
 }
 
-// 2. Copy Policy definitions (.toml)
-const policyDir = join(bundleDir, 'policies');
-if (!existsSync(policyDir)) {
-  mkdirSync(policyDir);
-}
+const rootBundleDir = join(root, 'bundle');
+const cliBundleDir = join(root, 'packages', 'cli', 'bundle');
 
-// Locate policy files specifically in the core package
-const policyFiles = glob.sync('packages/core/src/policy/policies/*.toml', {
-  cwd: root,
-});
-
-for (const file of policyFiles) {
-  copyFileSync(join(root, file), join(policyDir, basename(file)));
-}
+const { policyFiles } = copyBundleAssetsTo(rootBundleDir);
+copyBundleAssetsTo(cliBundleDir);
 
 console.log(`Copied ${policyFiles.length} policy files to bundle/policies/`);
-console.log('Assets copied to bundle/');
+console.log('Assets copied to bundle/ and packages/cli/bundle/');
