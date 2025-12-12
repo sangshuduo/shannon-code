@@ -8,7 +8,7 @@ import type { CommandModule } from 'yargs';
 import {
   debugLogger,
   type ExtensionInstallMetadata,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 
 import { getErrorMessage } from '../../utils/errors.js';
 import {

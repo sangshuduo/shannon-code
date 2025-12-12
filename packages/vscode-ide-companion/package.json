@@ -1,13 +1,13 @@
 {
-  "name": "gemini-cli-vscode-ide-companion",
-  "displayName": "Gemini CLI Companion",
-  "description": "Enable Gemini CLI with direct access to your IDE workspace.",
-  "version": "0.21.0-nightly.20251211.8c83e1ea9",
-  "publisher": "google",
+  "name": "shannon-cli-vscode-ide-companion",
+  "displayName": "Shannon CLI Companion",
+  "description": "Enable Shannon CLI with direct access to your IDE workspace.",
+  "version": "0.1.0",
+  "publisher": "sangshuduo",
   "icon": "assets/icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/google-gemini/gemini-cli.git",
+    "url": "https://github.com/sangshuduo/shannon-code.git",
     "directory": "packages/vscode-ide-companion"
   },
   "engines": {
@@ -19,10 +19,10 @@
     "AI"
   ],
   "keywords": [
-    "gemini-cli",
-    "gemini cli",
-    "gemini",
-    "gemini code",
+    "shannon-cli",
+    "shannon cli",
+    "shannon",
+    "shannon code",
     "cli",
     "ide integration",
     "ide companion"

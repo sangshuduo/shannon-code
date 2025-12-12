@@ -52,7 +52,7 @@ import {
   refreshServerHierarchicalMemory,
   type ModelChangedPayload,
   type MemoryChangedPayload,
-  writeToStdout,
+  writeToStdout as _writeToStdout,
   disableMouseEvents,
   enterAlternateScreen,
   enableMouseEvents,
@@ -64,7 +64,7 @@ import {
   fireSessionStartHook,
   fireSessionEndHook,
   generateSummary,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import { validateAuthMethod } from '../config/auth.js';
 import process from 'node:process';
 import { useHistory } from './hooks/useHistoryManager.js';
@@ -104,7 +104,7 @@ import { appEvents, AppEvent } from '../utils/events.js';
 import { type UpdateObject } from './utils/updateCheck.js';
 import { setUpdateHandler } from '../utils/handleAutoUpdate.js';
 import { registerCleanup, runExitCleanup } from '../utils/cleanup.js';
-import { RELAUNCH_EXIT_CODE } from '../utils/processUtils.js';
+import { RELAUNCH_EXIT_CODE as _RELAUNCH_EXIT_CODE } from '../utils/processUtils.js';
 import type { SessionInfo } from '../utils/sessionUtils.js';
 import { useMessageQueue } from './hooks/useMessageQueue.js';
 import { useAutoAcceptIndicator } from './hooks/useAutoAcceptIndicator.js';
@@ -512,18 +512,18 @@ export const AppContainer = (props: AppContainerProps) => {
           return;
         }
 
-        if (
-          authType === AuthType.LOGIN_WITH_GOOGLE &&
-          config.isBrowserLaunchSuppressed()
-        ) {
-          await runExitCleanup();
-          writeToStdout(`
-----------------------------------------------------------------
-Logging in with Google... Restarting Gemini CLI to continue.
-----------------------------------------------------------------
-          `);
-          process.exit(RELAUNCH_EXIT_CODE);
-        }
+        // if (
+        //   authType === AuthType.LOGIN_WITH_GOOGLE &&
+        //   config.isBrowserLaunchSuppressed()
+        // ) {
+        //   await runExitCleanup();
+        //   writeToStdout(`
+        // ----------------------------------------------------------------
+        // Logging in with Google... Restarting Gemini CLI to continue.
+        // ----------------------------------------------------------------
+        //   `);
+        //   process.exit(RELAUNCH_EXIT_CODE);
+        // }
       }
       setAuthState(AuthState.Authenticated);
     },
@@ -680,7 +680,7 @@ Logging in with Google... Restarting Gemini CLI to continue.
     historyManager.addItem(
       {
         type: MessageType.INFO,
-        text: 'Refreshing hierarchical memory (GEMINI.md or other context files)...',
+        text: 'Refreshing hierarchical memory (SHANNON.md or other context files)...',
       },
       Date.now(),
     );

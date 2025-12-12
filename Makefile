@@ -18,7 +18,7 @@ help:
 	@echo "  make debug            - Start the Gemini CLI in debug mode"
 	@echo ""
 	@echo "  make run-npx          - Run the CLI using npx (for testing the published package)"
-	@echo "  make create-alias     - Create a 'gemini' alias for your shell"
+	@echo "  make create-alias     - Create a 'shannon' alias for your shell"
 
 install:
 	npm install

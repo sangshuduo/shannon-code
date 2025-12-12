@@ -18,9 +18,9 @@ More information can be found about these systems in the
 
 | Package    | `prod` (Wombat Dressing Room) | `dev` (Github Private NPM Repo)           |
 | ---------- | ----------------------------- | ----------------------------------------- |
-| CLI        | @google/gemini-cli            | @google-gemini/gemini-cli                 |
-| Core       | @google/gemini-cli-core       | @google-gemini/gemini-cli-core A2A Server |
-| A2A Server | @google/gemini-cli-a2a-server | @google-gemini/gemini-cli-a2a-server      |
+| CLI        | shannon-code                  | @google-gemini/gemini-cli                 |
+| Core       | shannon-core                  | @google-gemini/gemini-cli-core A2A Server |
+| A2A Server | shannon-a2a-server            | @google-gemini/gemini-cli-a2a-server      |
 
 ## Release cadence and tags
 
@@ -44,7 +44,7 @@ These releases will not have been fully vetted and may contain regressions or
 other outstanding issues. Please help us test and install with `preview` tag.
 
 ```bash
-npm install -g @google/gemini-cli@preview
+npm install -g shannon-code@preview
 ```
 
 ### Stable
@@ -53,7 +53,7 @@ This will be the full promotion of last week's release + any bug fixes and
 validations. Use `latest` tag.
 
 ```bash
-npm install -g @google/gemini-cli@latest
+npm install -g shannon-code@latest
 ```
 
 ### Nightly
@@ -63,7 +63,7 @@ npm install -g @google/gemini-cli@latest
   there are pending validations and issues. Use `nightly` tag.
 
 ```bash
-npm install -g @google/gemini-cli@nightly
+npm install -g shannon-code@nightly
 ```
 
 ## Weekly release promotion
@@ -374,12 +374,12 @@ packages are working as expected. This can be done by installing the packages
 locally and running a set of tests to ensure that they are functioning
 correctly.
 
-- `npx -y @google/gemini-cli@latest --version` to validate the push worked as
-  expected if you were not doing a rc or dev tag
-- `npx -y @google/gemini-cli@<release tag> --version` to validate the tag pushed
+- `npx -y shannon-code@latest --version` to validate the push worked as expected
+  if you were not doing a rc or dev tag
+- `npx -y shannon-code@<release tag> --version` to validate the tag pushed
   appropriately
 - _This is destructive locally_
-  `npm uninstall @google/gemini-cli && npm uninstall -g @google/gemini-cli && npm cache clean --force &&  npm install @google/gemini-cli@<version>`
+  `npm uninstall shannon-code && npm uninstall -g shannon-code && npm cache clean --force &&  npm install shannon-code@<version>`
 - Smoke testing a basic run through of exercising a few llm commands and tools
   is recommended to ensure that the packages are working as expected. We'll
   codify this more in the future.
@@ -456,12 +456,12 @@ Here are the key stages:
 
 **Stage 3: Publishing standard packages to NPM**
 
-- **What happens:** The `npm publish` command is run for the
-  `@google/gemini-cli-core` and `@google/gemini-cli` packages.
+- **What happens:** The `npm publish` command is run for the `shannon-core` and
+  `shannon-code` packages.
 - **Why:** This publishes them as standard Node.js packages. Users installing
-  via `npm install -g @google/gemini-cli` will download these packages, and
-  `npm` will handle installing the `@google/gemini-cli-core` dependency
-  automatically. The code in these packages is not bundled into a single file.
+  via `npm install -g shannon-code` will download these packages, and `npm` will
+  handle installing the `shannon-core` dependency automatically. The code in
+  these packages is not bundled into a single file.
 
 **Stage 4: Assembling and creating the GitHub release asset**
 
@@ -472,7 +472,7 @@ executable that enables `npx` usage directly from the GitHub repository.
     - **What happens:** The built JavaScript from both `packages/core/dist` and
       `packages/cli/dist`, along with all third-party JavaScript dependencies,
       are bundled by `esbuild` into a single, executable JavaScript file (e.g.,
-      `gemini.js`). The `node-pty` library is excluded from this bundle as it
+      `shannon.js`). The `node-pty` library is excluded from this bundle as it
       contains native binaries.
     - **Why:** This creates a single, optimized file that contains all the
       necessary application code. It simplifies execution for users who want to
@@ -481,10 +481,10 @@ executable that enables `npx` usage directly from the GitHub repository.
 
 2.  **The `bundle` directory is assembled:**
     - **What happens:** A temporary `bundle` folder is created at the project
-      root. The single `gemini.js` executable is placed inside it, along with
+      root. The single `shannon.js` executable is placed inside it, along with
       other essential files.
     - **File movement:**
-      - `gemini.js` (from esbuild) -> `bundle/gemini.js`
+      - `shannon.js` (from esbuild) -> `bundle/shannon.js`
       - `README.md` -> `bundle/README.md`
       - `LICENSE` -> `bundle/LICENSE`
       - `packages/cli/src/utils/*.sb` (sandbox profiles) -> `bundle/`
@@ -493,7 +493,7 @@ executable that enables `npx` usage directly from the GitHub repository.
 
 3.  **The GitHub release is created:**
     - **What happens:** The contents of the `bundle` directory, including the
-      `gemini.js` executable, are attached as assets to a new GitHub Release.
+      `shannon.js` executable, are attached as assets to a new GitHub Release.
     - **Why:** This makes the single-file version of the CLI available for
       direct download and enables the
       `npx https://github.com/google-gemini/gemini-cli` command, which downloads
@@ -502,10 +502,9 @@ executable that enables `npx` usage directly from the GitHub repository.
 **Summary of artifacts**
 
 - **NPM:** Publishes standard, un-bundled Node.js packages. The primary artifact
-  is the code in `packages/cli/dist`, which depends on
-  `@google/gemini-cli-core`.
-- **GitHub release:** Publishes a single, bundled `gemini.js` file that contains
-  all dependencies, for easy execution via `npx`.
+  is the code in `packages/cli/dist`, which depends on `shannon-core`.
+- **GitHub release:** Publishes a single, bundled `shannon.js` file that
+  contains all dependencies, for easy execution via `npx`.
 
 This dual-artifact process ensures that both traditional `npm` users and those
 who prefer the convenience of `npx` have an optimized experience.

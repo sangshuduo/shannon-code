@@ -13,7 +13,7 @@ import type {
   ToolConfirmationOutcome,
   ToolResultDisplay,
   RetrieveUserQuotaResponse,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import type { PartListUnion } from '@google/genai';
 import { type ReactNode } from 'react';
 

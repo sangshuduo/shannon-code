@@ -14,7 +14,7 @@ import {
   type UserTierId,
   PREVIEW_GEMINI_MODEL,
   DEFAULT_GEMINI_MODEL,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { type UseHistoryManagerReturn } from './useHistoryManager.js';
 import { MessageType } from '../types.js';

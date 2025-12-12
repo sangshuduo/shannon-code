@@ -52,6 +52,7 @@ export enum AuthType {
   USE_VERTEX_AI = 'vertex-ai',
   LEGACY_CLOUD_SHELL = 'cloud-shell',
   COMPUTE_ADC = 'compute-default-credentials',
+  USE_OLLAMA = 'ollama',
 }
 
 export type ContentGeneratorConfig = {
@@ -59,6 +60,8 @@ export type ContentGeneratorConfig = {
   vertexai?: boolean;
   authType?: AuthType;
   proxy?: string;
+  ollamaBaseUrl?: string;
+  ollamaModel?: string;
 };
 
 export async function createContentGeneratorConfig(
@@ -66,7 +69,10 @@ export async function createContentGeneratorConfig(
   authType: AuthType | undefined,
 ): Promise<ContentGeneratorConfig> {
   const geminiApiKey =
-    (await loadApiKey()) || process.env['GEMINI_API_KEY'] || undefined;
+    (await loadApiKey()) ||
+    process.env['SHANNON_API_KEY'] ||
+    process.env['GEMINI_API_KEY'] ||
+    undefined;
   const googleApiKey = process.env['GOOGLE_API_KEY'] || undefined;
   const googleCloudProject =
     process.env['GOOGLE_CLOUD_PROJECT'] ||
@@ -78,6 +84,14 @@ export async function createContentGeneratorConfig(
     authType,
     proxy: config?.getProxy(),
   };
+
+  if (authType === AuthType.USE_OLLAMA) {
+    contentGeneratorConfig.ollamaBaseUrl =
+      process.env['OLLAMA_BASE_URL'] || 'http://localhost:11434/v1';
+    contentGeneratorConfig.ollamaModel =
+      process.env['OLLAMA_MODEL'] || config.getModel();
+    return contentGeneratorConfig;
+  }
 
   // If we are using Google auth or we are in Cloud Shell, there is nothing else to validate for now
   if (
@@ -123,11 +137,15 @@ export async function createContentGenerator(
       gcConfig.getPreviewFeatures(),
     );
     const customHeadersEnv =
-      process.env['GEMINI_CLI_CUSTOM_HEADERS'] || undefined;
-    const userAgent = `GeminiCLI/${version}/${model} (${process.platform}; ${process.arch})`;
+      process.env['SHANNON_CLI_CUSTOM_HEADERS'] ||
+      process.env['GEMINI_CLI_CUSTOM_HEADERS'] ||
+      undefined;
+    const userAgent = `ShannonCLI/${version}/${model} (${process.platform}; ${process.arch})`;
     const customHeadersMap = parseCustomHeaders(customHeadersEnv);
     const apiKeyAuthMechanism =
-      process.env['GEMINI_API_KEY_AUTH_MECHANISM'] || 'x-goog-api-key';
+      process.env['SHANNON_API_KEY_AUTH_MECHANISM'] ||
+      process.env['GEMINI_API_KEY_AUTH_MECHANISM'] ||
+      'x-goog-api-key';
 
     const baseHeaders: Record<string, string> = {
       ...customHeadersMap,
@@ -179,6 +197,18 @@ export async function createContentGenerator(
         httpOptions,
       });
       return new LoggingContentGenerator(googleGenAI.models, gcConfig);
+    }
+    if (config.authType === AuthType.USE_OLLAMA) {
+      const { OllamaContentGenerator } = await import(
+        './ollamaContentGenerator.js'
+      );
+      return new LoggingContentGenerator(
+        new OllamaContentGenerator({
+          baseUrl: config.ollamaBaseUrl || 'http://localhost:11434/v1',
+          model: config.ollamaModel || gcConfig.getModel(),
+        }),
+        gcConfig,
+      );
     }
     throw new Error(
       `Error creating contentGenerator: Unsupported authType: ${config.authType}`,

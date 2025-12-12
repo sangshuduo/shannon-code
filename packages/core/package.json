@@ -1,10 +1,11 @@
 {
-  "name": "@google/gemini-cli-core",
-  "version": "0.21.0-nightly.20251211.8c83e1ea9",
-  "description": "Gemini CLI Core",
+  "name": "@sangshuduo/shannon-core",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Shannon CLI Core",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/google-gemini/gemini-cli.git"
+    "url": "git+https://github.com/sangshuduo/shannon-code.git"
   },
   "type": "module",
   "main": "dist/index.js",
@@ -19,6 +20,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@google-cloud/logging": "^11.2.1",
     "@google-cloud/opentelemetry-cloud-monitoring-exporter": "^0.21.0",
@@ -79,7 +83,7 @@
     "node-pty": "^1.0.0"
   },
   "devDependencies": {
-    "@google/gemini-cli-test-utils": "file:../test-utils",
+    "@sangshuduo/shannon-test-utils": "file:../test-utils",
     "@types/diff": "^7.0.2",
     "@types/dotenv": "^6.1.1",
     "@types/fast-levenshtein": "^0.0.4",

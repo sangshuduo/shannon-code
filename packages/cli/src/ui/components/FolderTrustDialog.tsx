@@ -15,7 +15,7 @@ import * as process from 'node:process';
 import * as path from 'node:path';
 import { relaunchApp } from '../../utils/processUtils.js';
 import { runExitCleanup } from '../../utils/cleanup.js';
-import { ExitCodes } from '@google/gemini-cli-core';
+import { ExitCodes } from '@sangshuduo/shannon-core';
 
 export enum FolderTrustChoice {
   TRUST_FOLDER = 'trust_folder',
@@ -94,7 +94,7 @@ export const FolderTrustDialog: React.FC<FolderTrustDialogProps> = ({
             Do you trust this folder?
           </Text>
           <Text color={theme.text.primary}>
-            Trusting a folder allows Gemini to execute commands it suggests.
+            Trusting a folder allows Shannon to execute commands it suggests.
             This is a security feature to prevent accidental execution in
             untrusted directories.
           </Text>
@@ -109,7 +109,7 @@ export const FolderTrustDialog: React.FC<FolderTrustDialogProps> = ({
       {isRestarting && (
         <Box marginLeft={1} marginTop={1}>
           <Text color={theme.status.warning}>
-            Gemini CLI is restarting to apply the trust changes...
+            Shannon CLI is restarting to apply the trust changes...
           </Text>
         </Box>
       )}

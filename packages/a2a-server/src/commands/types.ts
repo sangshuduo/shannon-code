@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { Config, GitService } from '@google/gemini-cli-core';
+import type { Config, GitService } from '@sangshuduo/shannon-core';
 
 export interface CommandContext {
   config: Config;

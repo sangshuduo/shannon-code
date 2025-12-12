@@ -12,7 +12,7 @@ import type {
   ToolResult,
   ToolCallConfirmationDetails,
   FilterFilesOptions,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import {
   AuthType,
   logToolCall,
@@ -32,7 +32,7 @@ import {
   getEffectiveModel,
   createWorkingStdio,
   startupProfiler,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import * as acp from './acp.js';
 import { AcpFileSystemService } from './fileSystemService.js';
 import { Readable, Writable } from 'node:stream';
@@ -83,6 +83,11 @@ export class GeminiAgent {
         id: AuthType.LOGIN_WITH_GOOGLE,
         name: 'Log in with Google',
         description: null,
+      },
+      {
+        id: AuthType.USE_OLLAMA,
+        name: 'Use Ollama (local)',
+        description: 'Connect to a locally hosted Ollama endpoint.',
       },
       {
         id: AuthType.USE_GEMINI,

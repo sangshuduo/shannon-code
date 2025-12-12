@@ -22,7 +22,7 @@ import {
   SHELL_FOCUS_HINT_DELAY_MS,
 } from '../../constants.js';
 import { theme } from '../../semantic-colors.js';
-import type { Config } from '@google/gemini-cli-core';
+import type { Config } from '@sangshuduo/shannon-core';
 import { useInactivityTimer } from '../../hooks/useInactivityTimer.js';
 import { ToolCallStatus } from '../../types.js';
 import { ShellInputPrompt } from '../ShellInputPrompt.js';

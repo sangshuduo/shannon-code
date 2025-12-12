@@ -18,12 +18,12 @@ import {
   AuthType,
   clearCachedCredentialFile,
   type Config,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import { useKeypress } from '../hooks/useKeypress.js';
 import { AuthState } from '../types.js';
-import { runExitCleanup } from '../../utils/cleanup.js';
+import { runExitCleanup as _runExitCleanup } from '../../utils/cleanup.js';
 import { validateAuthMethodWithSettings } from './useAuth.js';
-import { RELAUNCH_EXIT_CODE } from '../../utils/processUtils.js';
+import { RELAUNCH_EXIT_CODE as _RELAUNCH_EXIT_CODE } from '../../utils/processUtils.js';
 
 interface AuthDialogProps {
   config: Config;
@@ -34,46 +34,51 @@ interface AuthDialogProps {
 }
 
 export function AuthDialog({
-  config,
+  config: _config,
   settings,
   setAuthState,
   authError,
   onAuthError,
 }: AuthDialogProps): React.JSX.Element {
-  const [exiting, setExiting] = useState(false);
+  const [_exiting, _setExiting] = useState(false);
   let items = [
     {
-      label: 'Login with Google',
-      value: AuthType.LOGIN_WITH_GOOGLE,
-      key: AuthType.LOGIN_WITH_GOOGLE,
+      label: 'Use Ollama (local)',
+      value: AuthType.USE_OLLAMA,
+      key: AuthType.USE_OLLAMA,
     },
-    ...(process.env['CLOUD_SHELL'] === 'true'
-      ? [
-          {
-            label: 'Use Cloud Shell user credentials',
-            value: AuthType.COMPUTE_ADC,
-            key: AuthType.COMPUTE_ADC,
-          },
-        ]
-      : process.env['GEMINI_CLI_USE_COMPUTE_ADC'] === 'true'
-        ? [
-            {
-              label: 'Use metadata server application default credentials',
-              value: AuthType.COMPUTE_ADC,
-              key: AuthType.COMPUTE_ADC,
-            },
-          ]
-        : []),
-    {
-      label: 'Use Gemini API Key',
-      value: AuthType.USE_GEMINI,
-      key: AuthType.USE_GEMINI,
-    },
-    {
-      label: 'Vertex AI',
-      value: AuthType.USE_VERTEX_AI,
-      key: AuthType.USE_VERTEX_AI,
-    },
+    // {
+    //   label: 'Login with Google',
+    //   value: AuthType.LOGIN_WITH_GOOGLE,
+    //   key: AuthType.LOGIN_WITH_GOOGLE,
+    // },
+    // ...(process.env['CLOUD_SHELL'] === 'true'
+    //   ? [
+    //       {
+    //         label: 'Use Cloud Shell user credentials',
+    //         value: AuthType.COMPUTE_ADC,
+    //         key: AuthType.COMPUTE_ADC,
+    //       },
+    //     ]
+    //   : process.env['GEMINI_CLI_USE_COMPUTE_ADC'] === 'true'
+    //     ? [
+    //         {
+    //           label: 'Use metadata server application default credentials',
+    //           value: AuthType.COMPUTE_ADC,
+    //           key: AuthType.COMPUTE_ADC,
+    //         },
+    //       ]
+    //     : []),
+    // {
+    //   label: 'Use Gemini API Key',
+    //   value: AuthType.USE_GEMINI,
+    //   key: AuthType.USE_GEMINI,
+    // },
+    // {
+    //   label: 'Vertex AI',
+    //   value: AuthType.USE_VERTEX_AI,
+    //   key: AuthType.USE_VERTEX_AI,
+    // },
   ];
 
   if (settings.merged.security?.auth?.enforcedType) {
@@ -104,7 +109,7 @@ export function AuthDialog({
       return item.value === AuthType.USE_GEMINI;
     }
 
-    return item.value === AuthType.LOGIN_WITH_GOOGLE;
+    return item.value === AuthType.USE_OLLAMA;
   });
   if (settings.merged.security?.auth?.enforcedType) {
     initialAuthIndex = 0;
@@ -112,41 +117,41 @@ export function AuthDialog({
 
   const onSelect = useCallback(
     async (authType: AuthType | undefined, scope: LoadableSettingScope) => {
-      if (exiting) {
+      if (_exiting) {
         return;
       }
       if (authType) {
-        const isInitialAuthSelection =
-          !settings.merged.security?.auth?.selectedType;
+        // const isInitialAuthSelection =
+        //   !settings.merged.security?.auth?.selectedType;
 
         await clearCachedCredentialFile();
 
         settings.setValue(scope, 'security.auth.selectedType', authType);
-        if (
-          authType === AuthType.LOGIN_WITH_GOOGLE &&
-          config.isBrowserLaunchSuppressed()
-        ) {
-          setExiting(true);
-          setTimeout(async () => {
-            await runExitCleanup();
-            process.exit(RELAUNCH_EXIT_CODE);
-          }, 100);
-          return;
-        }
+        // if (
+        //   authType === AuthType.LOGIN_WITH_GOOGLE &&
+        //   config.isBrowserLaunchSuppressed()
+        // ) {
+        //   setExiting(true);
+        //   setTimeout(async () => {
+        //     await runExitCleanup();
+        //     process.exit(RELAUNCH_EXIT_CODE);
+        //   }, 100);
+        //   return;
+        // }
 
-        if (authType === AuthType.USE_GEMINI) {
-          if (isInitialAuthSelection && process.env['GEMINI_API_KEY']) {
-            setAuthState(AuthState.Unauthenticated);
-            return;
-          } else {
-            setAuthState(AuthState.AwaitingApiKeyInput);
-            return;
-          }
-        }
+        // if (authType === AuthType.USE_GEMINI) {
+        //   if (isInitialAuthSelection && process.env['GEMINI_API_KEY']) {
+        //     setAuthState(AuthState.Unauthenticated);
+        //     return;
+        //   } else {
+        //     setAuthState(AuthState.AwaitingApiKeyInput);
+        //     return;
+        //   }
+        // }
       }
       setAuthState(AuthState.Unauthenticated);
     },
-    [settings, config, setAuthState, exiting],
+    [settings, setAuthState, _exiting],
   );
 
   const handleAuthSelect = (authMethod: AuthType) => {
@@ -181,22 +186,22 @@ export function AuthDialog({
     { isActive: true },
   );
 
-  if (exiting) {
-    return (
-      <Box
-        borderStyle="round"
-        borderColor={theme.border.focused}
-        flexDirection="row"
-        padding={1}
-        width="100%"
-        alignItems="flex-start"
-      >
-        <Text color={theme.text.primary}>
-          Logging in with Google... Restarting Gemini CLI to continue.
-        </Text>
-      </Box>
-    );
-  }
+  // if (exiting) {
+  //   return (
+  //     <Box
+  //       borderStyle="round"
+  //       borderColor={theme.border.focused}
+  //       flexDirection="row"
+  //       padding={1}
+  //       width="100%"
+  //       alignItems="flex-start"
+  //     >
+  //       <Text color={theme.text.primary}>
+  //         Logging in with Google... Restarting Gemini CLI to continue.
+  //       </Text>
+  //     </Box>
+  //   );
+  // }
 
   return (
     <Box
@@ -237,13 +242,13 @@ export function AuthDialog({
         </Box>
         <Box marginTop={1}>
           <Text color={theme.text.primary}>
-            Terms of Services and Privacy Notice for Gemini CLI
+            Terms of Services and Privacy Notice for Shannon CLI
           </Text>
         </Box>
         <Box marginTop={1}>
           <Text color={theme.text.link}>
             {
-              'https://github.com/google-gemini/gemini-cli/blob/main/docs/tos-privacy.md'
+              'https://github.com/sangshuduo/shannon-code/blob/main/docs/tos-privacy.md'
             }
           </Text>
         </Box>

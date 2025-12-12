@@ -26,7 +26,7 @@ vi.mock('node:os', async (importOriginal) => {
   };
 });
 
-vi.mock('@google/gemini-cli-core', () => ({
+vi.mock('@sangshuduo/shannon-core', () => ({
   GEMINI_DIR: '.gemini',
   debugLogger: {
     error: vi.fn(),

@@ -175,8 +175,8 @@ export default tseslint.config(
       'no-restricted-imports': [
         'error',
         {
-          name: '@google/gemini-cli-core',
-          message: 'Please use relative imports within the @google/gemini-cli-core package.',
+          name: '@sangshuduo/shannon-core',
+          message: 'Please use relative imports within the shannon-core package.',
         },
       ],
     },
@@ -187,8 +187,8 @@ export default tseslint.config(
       'no-restricted-imports': [
         'error',
         {
-          name: '@google/gemini-cli',
-          message: 'Please use relative imports within the @google/gemini-cli package.',
+          name: '@sangshuduo/shannon-code',
+          message: 'Please use relative imports within the shannon-code package.',
         },
       ],
     },

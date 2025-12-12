@@ -12,7 +12,7 @@ import { theme } from '../semantic-colors.js';
 import { StreamingState } from '../types.js';
 import { UpdateNotification } from './UpdateNotification.js';
 
-import { GEMINI_DIR, Storage } from '@google/gemini-cli-core';
+import { GEMINI_DIR, Storage } from '@sangshuduo/shannon-core';
 
 import * as fs from 'node:fs/promises';
 import os from 'node:os';

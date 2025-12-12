@@ -281,7 +281,7 @@ export class TestRig {
   originalFakeResponsesPath?: string;
 
   constructor() {
-    this.bundlePath = join(__dirname, '..', 'bundle/gemini.js');
+    this.bundlePath = join(__dirname, '..', 'bundle/shannon.js');
     this.testDir = null;
   }
 
@@ -362,7 +362,7 @@ export class TestRig {
 
   /**
    * The command and args to use to invoke Gemini CLI. Allows us to switch
-   * between using the bundled gemini.js (the default) and using the installed
+   * between using the bundled shannon.js (the default) and using the installed
    * 'gemini' (used to verify npm bundles).
    */
   private _getCommandAndArgs(extraInitialArgs: string[] = []): {

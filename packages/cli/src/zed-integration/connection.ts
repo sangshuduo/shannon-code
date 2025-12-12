@@ -5,7 +5,7 @@
  */
 
 import { z } from 'zod';
-import { coreEvents } from '@google/gemini-cli-core';
+import { coreEvents } from '@sangshuduo/shannon-core';
 import { type Result, type ErrorResponse } from './schema.js';
 import type { WritableStream, ReadableStream } from 'node:stream/web';
 

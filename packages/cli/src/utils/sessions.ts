@@ -8,7 +8,7 @@ import {
   ChatRecordingService,
   generateSummary,
   type Config,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import {
   formatRelativeTime,
   SessionSelector,

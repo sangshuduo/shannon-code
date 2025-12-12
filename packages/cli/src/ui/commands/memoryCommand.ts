@@ -7,7 +7,7 @@
 import {
   getErrorMessage,
   refreshServerHierarchicalMemory,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import { MessageType } from '../types.js';
 import type { SlashCommand, SlashCommandActionReturn } from './types.js';
 import { CommandKind } from './types.js';
@@ -119,7 +119,7 @@ export const memoryCommand: SlashCommand = {
     },
     {
       name: 'list',
-      description: 'Lists the paths of the GEMINI.md files in use',
+      description: 'Lists the paths of the SHANNON.md files in use',
       kind: CommandKind.BUILT_IN,
       autoExecute: true,
       action: async (context) => {
@@ -128,8 +128,8 @@ export const memoryCommand: SlashCommand = {
 
         const messageContent =
           fileCount > 0
-            ? `There are ${fileCount} GEMINI.md file(s) in use:\n\n${filePaths.join('\n')}`
-            : 'No GEMINI.md files in use.';
+            ? `There are ${fileCount} SHANNON.md file(s) in use:\n\n${filePaths.join('\n')}`
+            : 'No SHANNON.md files in use.';
 
         context.ui.addItem(
           {

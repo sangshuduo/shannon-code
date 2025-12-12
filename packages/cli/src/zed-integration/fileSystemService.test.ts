@@ -7,7 +7,7 @@
 import { describe, it, expect, vi, beforeEach, type Mocked } from 'vitest';
 import { AcpFileSystemService } from './fileSystemService.js';
 import type { Client } from './acp.js';
-import type { FileSystemService } from '@google/gemini-cli-core';
+import type { FileSystemService } from '@sangshuduo/shannon-core';
 
 describe('AcpFileSystemService', () => {
   let mockClient: Mocked<Client>;

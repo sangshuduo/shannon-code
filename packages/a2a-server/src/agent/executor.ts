@@ -16,11 +16,11 @@ import type {
   ToolCallRequestInfo,
   ServerGeminiToolCallRequestEvent,
   Config,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import {
   GeminiEventType,
   SimpleExtensionLoader,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import { v4 as uuidv4 } from 'uuid';
 
 import { logger } from '../utils/logger.js';

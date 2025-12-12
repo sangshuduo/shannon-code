@@ -9,7 +9,7 @@ import { waitFor } from '../../test-utils/async.js';
 import { act } from 'react';
 import { vi } from 'vitest';
 import { FolderTrustDialog } from './FolderTrustDialog.js';
-import { ExitCodes } from '@google/gemini-cli-core';
+import { ExitCodes } from '@sangshuduo/shannon-core';
 import * as processUtils from '../../utils/processUtils.js';
 
 vi.mock('../../utils/processUtils.js', () => ({

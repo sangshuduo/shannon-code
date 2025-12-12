@@ -10,7 +10,7 @@ import { waitFor } from '../../test-utils/async.js';
 import { ConfigInitDisplay } from './ConfigInitDisplay.js';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { AppEvent } from '../../utils/events.js';
-import { MCPServerStatus, type McpClient } from '@google/gemini-cli-core';
+import { MCPServerStatus, type McpClient } from '@sangshuduo/shannon-core';
 import { Text } from 'ink';
 
 // Mock GeminiSpinner

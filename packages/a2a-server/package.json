@@ -1,16 +1,16 @@
 {
-  "name": "@google/gemini-cli-a2a-server",
-  "version": "0.21.0-nightly.20251211.8c83e1ea9",
-  "description": "Gemini CLI A2A Server",
+  "name": "@sangshuduo/shannon-a2a-server",
+  "version": "0.1.0",
+  "description": "Shannon Agent-to-Agent Server",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/google-gemini/gemini-cli.git",
+    "url": "git+https://github.com/sangshuduo/shannon-code.git",
     "directory": "packages/a2a-server"
   },
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "gemini-cli-a2a-server": "dist/a2a-server.mjs"
+    "shannon-a2a-server": "dist/a2a-server.mjs"
   },
   "scripts": {
     "build": "node ../../scripts/build_package.js",
@@ -27,7 +27,7 @@
   "dependencies": {
     "@a2a-js/sdk": "^0.3.2",
     "@google-cloud/storage": "^7.16.0",
-    "@google/gemini-cli-core": "file:../core",
+    "@sangshuduo/shannon-core": "file:../core",
     "express": "^5.2.0",
     "fs-extra": "^11.3.0",
     "tar": "^7.5.2",

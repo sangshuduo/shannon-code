@@ -13,14 +13,14 @@ import type {
   MCPServerConfig,
   BugCommandSettings,
   TelemetrySettings,
-  AuthType,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import {
+  AuthType,
   DEFAULT_TRUNCATE_TOOL_OUTPUT_LINES,
   DEFAULT_TRUNCATE_TOOL_OUTPUT_THRESHOLD,
   DEFAULT_MODEL_CONFIGS,
   GEMINI_MODEL_ALIAS_PRO,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import type { CustomTheme } from '../ui/themes/theme.js';
 import type { SessionRetentionSettings } from './settings.js';
 import { DEFAULT_MIN_RETENTION } from '../utils/sessionCleanup.js';
@@ -409,7 +409,7 @@ const SETTINGS_SCHEMA = {
         requiresRestart: false,
         default: false,
         description:
-          'Hide the context summary (GEMINI.md, MCP servers) above the input.',
+          'Hide the context summary (SHANNON.md, MCP servers) above the input.',
         showInDialog: true,
       },
       footer: {
@@ -824,7 +824,7 @@ const SETTINGS_SCHEMA = {
         requiresRestart: false,
         default: false,
         description: oneLine`
-          Controls how /memory refresh loads GEMINI.md files.
+          Controls how /memory refresh loads SHANNON.md files.
           When true, include directories are scanned; when false, only the current directory is used.
         `,
         showInDialog: true,
@@ -1207,7 +1207,7 @@ const SETTINGS_SCHEMA = {
             label: 'Selected Auth Type',
             category: 'Security',
             requiresRestart: true,
-            default: undefined as AuthType | undefined,
+            default: AuthType.USE_OLLAMA as AuthType,
             description: 'The currently selected authentication type.',
             showInDialog: false,
           },

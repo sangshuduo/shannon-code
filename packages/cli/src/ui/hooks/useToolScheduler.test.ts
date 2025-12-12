@@ -25,7 +25,7 @@ import type {
   Status as ToolCallStatusType,
   AnyDeclarativeTool,
   AnyToolInvocation,
-} from '@google/gemini-cli-core';
+} from '@sangshuduo/shannon-core';
 import {
   DEFAULT_TRUNCATE_TOOL_OUTPUT_LINES,
   DEFAULT_TRUNCATE_TOOL_OUTPUT_THRESHOLD,
@@ -33,13 +33,13 @@ import {
   ApprovalMode,
   MockTool,
   HookSystem,
-} from '@google/gemini-cli-core';
-import { createMockMessageBus } from '@google/gemini-cli-core/src/test-utils/mock-message-bus.js';
+} from '@sangshuduo/shannon-core';
+import { createMockMessageBus } from '@sangshuduo/shannon-core/src/test-utils/mock-message-bus.js';
 import { ToolCallStatus } from '../types.js';
 
 // Mocks
-vi.mock('@google/gemini-cli-core', async () => {
-  const actual = await vi.importActual<any>('@google/gemini-cli-core');
+vi.mock('@sangshuduo/shannon-core', async () => {
+  const actual = await vi.importActual<any>('@sangshuduo/shannon-core');
   // Patch CoreToolScheduler to have cancelAll if it's missing in the test environment
   if (
     actual.CoreToolScheduler &&
