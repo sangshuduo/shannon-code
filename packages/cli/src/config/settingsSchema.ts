@@ -14,7 +14,8 @@ import type {
   BugCommandSettings,
   TelemetrySettings,
 } from '@sangshuduo/shannon-core';
-import { AuthType ,
+import {
+  AuthType,
   DEFAULT_TRUNCATE_TOOL_OUTPUT_LINES,
   DEFAULT_TRUNCATE_TOOL_OUTPUT_THRESHOLD,
   DEFAULT_MODEL_CONFIGS,
@@ -739,6 +740,16 @@ const SETTINGS_SCHEMA = {
         default: {},
         description:
           'Custom named presets for model configs. These are merged with (and override) the built-in aliases.',
+        showInDialog: false,
+      },
+      customOverrides: {
+        type: 'array',
+        label: 'Custom Model Config Overrides',
+        category: 'Model',
+        requiresRestart: false,
+        default: [],
+        description:
+          'Custom model config overrides. These are merged with (and added to) the built-in overrides.',
         showInDialog: false,
       },
       overrides: {
