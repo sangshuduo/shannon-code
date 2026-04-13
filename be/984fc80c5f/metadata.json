@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "be984fc80c5f",
+  "strategy": "manual-commit",
+  "branch": "chore/sangshuduo/cleanup-github-workflows",
+  "checkpoints_count": 1,
+  "files_touched": [
+    ".claude/settings.local.json"
+  ],
+  "sessions": [
+    {
+      "metadata": "/be/984fc80c5f/0/metadata.json",
+      "transcript": "/be/984fc80c5f/0/full.jsonl",
+      "context": "/be/984fc80c5f/0/context.md",
+      "content_hash": "/be/984fc80c5f/0/content_hash.txt",
+      "prompt": "/be/984fc80c5f/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 11,
+    "cache_creation_tokens": 64056,
+    "cache_read_tokens": 315458,
+    "output_tokens": 963,
+    "api_call_count": 6
+  }
+}
